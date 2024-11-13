@@ -20,7 +20,9 @@
 
         // Aqui você poderia adicionar código para salvar os dados no banco de dados
 
+        //AQUI JENNI!!!!!
         //ADD SCRIPT SQL INSERT INTO ..... 
+        //SENHA COM password_hash($senha)
     
         //Se email ja existir mostrar erro
         //se não, mostrar sucesso
