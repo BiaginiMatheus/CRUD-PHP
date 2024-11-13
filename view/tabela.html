@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container-tabela">
+        <h2>Lista de Usuários</h2>
+        <form action="usuarios.php" method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th> <!-- Checkbox para exclusão -->
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Data de criação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><input type="checkbox" name="excluir[]" value="<?= $row['id'] ?>"></td>
+                            <td><input type="text" name="nome[]" value="<?= $row['nome'] ?>"></td>
+                            <td><input type="email" name="email[]" value="<?= $row['email'] ?>"></td>
+                            <td><?= $row['data_criacao'] ?></td>
+                            <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+            <button class="button-tabela" type="submit">Salvar</button>
+            <button class="button-tabela" type="button" onclick="logout()">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'logout.php';
+        }
+    </script>
+</body>
+</html>
