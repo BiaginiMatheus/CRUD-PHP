@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'];
 
     //Seleciona a senha do usuario registrado
-    $sql = "SELECT senha FROM usuarios WHERE email = :email";
+    $sql = "SELECT senha FROM Usuarios WHERE email = :email";
 
     //Prepara o comando e executa a consulta
     $stmt = $pdo->prepare($sql);

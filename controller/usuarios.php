@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 // Conectar ao banco de dados
-$conn = new mysqli('localhost', 'root', '', 'nome_do_banco_de_dados');
+$conn = new mysqli('localhost', 'root', '', 'banco de dados');
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
