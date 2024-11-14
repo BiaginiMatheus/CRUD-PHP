@@ -16,9 +16,8 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         // Em caso de erro, exibe uma mensagem
-        $erro = $e->getMessage();
         echo "<script>
-                alert('Erro ao conectar com o banco de dados: {$erro}');
+                alert('Erro ao conectar com o banco de dados:');
                 window.history.back();
               </script>";
         exit;
