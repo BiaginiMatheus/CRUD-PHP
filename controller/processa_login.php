@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //Verifica se o hash da senha digitado, confere com o hash no BD
         if (password_verify($senha, $usuario['senha'])) { 
-            echo "Login realizado com sucesso!";
+            echo "<script> window.location.href = '../view/tabela.html'; </script>";
         } else {
             //Mensagem generica para evitar que a pessoa descubra emails presentes no sistema
             echo "<script>
