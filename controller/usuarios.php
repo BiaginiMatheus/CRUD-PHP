@@ -6,10 +6,10 @@ require 'conexao_db.php';
 session_start();
 
 // Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-if (!isset($_SESSION['loggedin'])) {
+/*if (!isset($_SESSION['loggedin'])) {
     header('Location: login.html');
     exit;
-}
+}*/
 
 // Atualizar dados do usuário se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
