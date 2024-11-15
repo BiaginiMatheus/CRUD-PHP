@@ -30,9 +30,9 @@
             echo "<script>alert('Já existe uma conta com este email.'); window.history.back();</script>";
         } else {
         // Se o email não existir, continue com a inserção dos dados
-        $passwordHash = password_hash($senha, PASSWORD_DEFAULT);
+        $passwordHash = password_hash($senha, PASSWORD_DEaaaaaFAULT);
 
-        // Consulta SQL para inserir os dados
+        // Consulta SQL para inserir os dadosaa
         $sql = "INSERT INTO Usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
         $stmt = $pdo->prepare($sql);
 
