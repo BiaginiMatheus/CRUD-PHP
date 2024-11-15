@@ -1,10 +1,11 @@
 <?php
+// Importe a conexão com o banco de dados usando PDO
+require 'conexao_db.php';
 
-require 'conexao_db';
 // Iniciar a sessão
 session_start();
 
-// Verificar se o usuário está logado, se não redirecionar para a página de login
+// Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.html');
     exit;
@@ -13,10 +14,18 @@ if (!isset($_SESSION['loggedin'])) {
 // Atualizar dados do usuário se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Atualizar os dados dos usuários
+    $sqlUpdate = "UPDATE Usuarios SET nome = :nome, email = :email WHERE id = :id";
+    $stmtUpdate = $pdo->prepare($sqlUpdate);
+
     foreach ($_POST['id'] as $index => $id) {
         $nome = $_POST['nome'][$index];
         $email = $_POST['email'][$index];
-        $conn->query("UPDATE usuarios SET nome='$nome', email='$email' WHERE id=$id");
+
+        $stmtUpdate->execute([
+            ':id' => $id,
+            ':nome' => $nome,
+            ':email' => $email
+        ]);
     }
 
     // Deletar usuários selecionados

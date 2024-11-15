@@ -32,11 +32,16 @@
                 </tbody>
             </table>
             <button class="button-tabela" type="submit">Salvar</button>
+            <button class="button-tabela" type="button" onclick="mensagem()">Excluir</button>
             <button class="button-tabela" type="button" onclick="logout()">Logout</button>
         </form>
     </div>
 
     <script>
+        function mensagem() {
+            alert('Olá');
+        }
+
         function logout() {
             window.location.href = 'logout.php';
         }
