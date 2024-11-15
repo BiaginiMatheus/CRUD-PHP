@@ -15,9 +15,9 @@
         // Define o modo de erro do PDO para exceções
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-        // Em caso de erro, exibe uma mensagem
+        // Em caso de erro, exibe uma mensagem genérica
         echo "<script>
-                alert('Erro ao conectar com o banco de dados:');
+                alert('Erro, algo não está correto.');
                 window.history.back();
               </script>";
         exit;

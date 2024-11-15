@@ -1,6 +1,7 @@
 <?php
 
-require_once 'conexao_db.php';
+//Importe da conexão com o banco de dados
+require 'conexao_db.php';
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Caso ache o usuário
     if ($stmt->rowCount() > 0) {
-        //Crie uma variavel com os dados do usuario, neste caso apenas a senha
+        //Crie uma variavel com os dados do usuario, neste caso, apenas a senha
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //Verifica se o hash da senha digitado, confere com o hash no BD
@@ -27,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             //Mensagem generica para evitar que a pessoa descubra emails presentes no sistema
             echo "<script>
-                    alert('Usuário ou senha incorretos');
+                    alert('Usuário ou senha incorretos.');
                     window.history.back();
                   </script>";
         }
     } else {
         //Mensagem generica para evitar que a pessoa descubra emails presentes no sistema
         echo "<script>
-                alert('Usuário ou senha incorretos');
+                alert('Usuário ou senha incorretos.');
                 window.history.back();
               </script>";
     }

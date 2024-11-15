@@ -1,4 +1,6 @@
 <?php
+
+require 'conexao_db';
 // Iniciar a sessão
 session_start();
 
@@ -6,12 +8,6 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.html');
     exit;
-}
-
-// Conectar ao banco de dados
-$conn = new mysqli('localhost', 'root', '', 'banco de dados');
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
 }
 
 // Atualizar dados do usuário se o formulário foi enviado
@@ -32,11 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Consultar os usuários
-$result = $conn->query("SELECT id, nome, email, data_criacao FROM usuarios");
+$result = $conn->query("SELECT id, nome, email, data_criacao FROM Usuarios");
 ?>
 
-
-
-<?php
-$conn->close();
-?>
