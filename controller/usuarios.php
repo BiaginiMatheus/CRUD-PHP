@@ -59,7 +59,8 @@ function exibirUsuarios($Usuarios)
         echo "<td><input type='checkbox' name='excluir[]' value='" . htmlspecialchars($row['id']) . "'></td>";
         echo "<td><input type='text' name='nome[]' value='" . htmlspecialchars($row['nome']) . "'></td>";
         echo "<td><input type='email' name='email[]' value='" . htmlspecialchars($row['email']) . "'></td>";
-        echo "<td>" . htmlspecialchars($row['data_criacao']) . "</td>";
+        $data = new DateTime($row['data_criacao']);
+        echo "<td>" . htmlspecialchars($data->format("d/m/Y")) . "</td>";
         echo "<input type='hidden' name='id[]' value='" . htmlspecialchars($row['id']) . "'>";
         echo "</tr>";
     }
