@@ -30,7 +30,7 @@
             echo "<script>alert('Já existe uma conta com este email.'); window.history.back();</script>";
         } else {
         // Se o email não existir, continue com a inserção dos dados
-        $passwordHash = password_hash($senha, PASSWORD_DEaaaaaFAULT);
+        $passwordHash = password_hash($senha, PASSWORD_DEFAULT);
 
         // Consulta SQL para inserir os dados
         $sql = "INSERT INTO Usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
