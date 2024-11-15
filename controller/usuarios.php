@@ -23,19 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmtDelete->execute([':id' => $id]);
         }
     }else{
-    // Atualizar os dados dos usuários
-    $sqlUpdate = "UPDATE Usuarios SET nome = :nome, email = :email WHERE id = :id";
-    $stmtUpdate = $pdo->prepare($sqlUpdate);
+        // Atualizar os dados dos usuários
+        $sqlUpdate = "UPDATE Usuarios SET nome = :nome, email = :email WHERE id = :id";
+        $stmtUpdate = $pdo->prepare($sqlUpdate);
 
-    foreach ($_POST['id'] as $index => $id) {
-        $nome = $_POST['nome'][$index];
-        $email = $_POST['email'][$index];
+        foreach ($_POST['id'] as $index => $id) {
+            $nome = $_POST['nome'][$index];
+            $email = $_POST['email'][$index];
 
-        $stmtUpdate->execute([
-            ':id' => $id,
-            ':nome' => $nome,
-            ':email' => $email
-        ]);
+            $stmtUpdate->execute([
+                ':id' => $id,
+                ':nome' => $nome,
+                ':email' => $email
+            ]);
 
             echo "<script>
                 alert('Usuários atualizados com sucesso!');
