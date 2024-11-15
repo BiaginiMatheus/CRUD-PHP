@@ -13,6 +13,16 @@ session_start();
 
 // Atualizar dados do usuário se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Deletar usuários selecionados
+    if (isset($_POST['excluir'])) {
+        $sqlDelete = "DELETE FROM Usuarios WHERE id = :id";
+        $stmtDelete = $pdo->prepare($sqlDelete);
+
+        //PEGAR SÓ O USUÁRIO SELECIONADO E NÃO TODOS    
+       foreach ($_POST['id'] as $index => $id) {
+            $stmtDelete->execute([':id' => $id]);
+        }
+    }else{
     // Atualizar os dados dos usuários
     $sqlUpdate = "UPDATE Usuarios SET nome = :nome, email = :email WHERE id = :id";
     $stmtUpdate = $pdo->prepare($sqlUpdate);
@@ -26,15 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':nome' => $nome,
             ':email' => $email
         ]);
-    }
 
-    // Deletar usuários selecionados
-    if (isset($_POST['excluir'])) {
-        $sqlDelete = "DELETE FROM Usuarios WHERE id = :id";
-        $stmtDelete = $pdo->prepare($sqlDelete);
-
-        foreach ($_POST['excluir'] as $id) {
-            $stmtDelete->execute([':id' => $id]);
+            echo "<script>
+                alert('Usuários atualizados com sucesso!');
+                window.history.back();
+            </script>";
+            exit;
         }
     }
 }
