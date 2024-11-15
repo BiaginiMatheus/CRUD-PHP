@@ -40,6 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Consultar os usuários
-$result = $conn->query("SELECT id, nome, email, data_criacao FROM Usuarios");
-?>
+$sqlSelect = "SELECT id, nome, email, data_criacao FROM Usuarios";
+$stmt = $pdo->query($sqlSelect);
+$Usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtem todos os resultados de uma vez
 
+// Função para exibir a tabela de usuários
+function exibirUsuarios($Usuarios)
+{
+    foreach ($Usuarios as $row) {
+        echo "<tr>";
+        echo "<td><input type='checkbox' name='excluir[]' value='" . htmlspecialchars($row['id']) . "'></td>";
+        echo "<td><input type='text' name='nome[]' value='" . htmlspecialchars($row['nome']) . "'></td>";
+        echo "<td><input type='email' name='email[]' value='" . htmlspecialchars($row['email']) . "'></td>";
+        echo "<td>" . htmlspecialchars($row['data_criacao']) . "</td>";
+        echo "<input type='hidden' name='id[]' value='" . htmlspecialchars($row['id']) . "'>";
+        echo "</tr>";
+    }
+}
+?>
