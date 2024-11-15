@@ -22,7 +22,7 @@
         // Verifica se o email já existe no banco de dados
         $sql = "SELECT * FROM Usuarios WHERE email = :email";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':email', $email);aaa
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
