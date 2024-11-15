@@ -30,8 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Deletar usuários selecionados
     if (isset($_POST['excluir'])) {
+        $sqlDelete = "DELETE FROM Usuarios WHERE id = :id";
+        $stmtDelete = $pdo->prepare($sqlDelete);
+
         foreach ($_POST['excluir'] as $id) {
-            $conn->query("DELETE FROM usuarios WHERE id=$id");
+            $stmtDelete->execute([':id' => $id]);
         }
     }
 }
