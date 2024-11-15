@@ -22,7 +22,7 @@
         // Verifica se o email já existe no banco de dados
         $sql = "SELECT * FROM Usuarios WHERE email = :email";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':email', $email);aaa
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
@@ -32,7 +32,7 @@
         // Se o email não existir, continue com a inserção dos dados
         $passwordHash = password_hash($senha, PASSWORD_DEaaaaaFAULT);
 
-        // Consulta SQL para inserir os dadosaa
+        // Consulta SQL para inserir os dados
         $sql = "INSERT INTO Usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
         $stmt = $pdo->prepare($sql);
 
