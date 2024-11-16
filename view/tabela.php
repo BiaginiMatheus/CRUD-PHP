@@ -30,15 +30,23 @@ include '../controller/usuarios.php';
                 </tbody>
             </table>
             <button class="button-tabela" type="submit">Salvar</button>
-            <button class="button-tabela" type="button" onclick="mensagem()">Excluir</button>
-            <button class="button-tabela" type="button" onclick="logout()">Logout</button>
+            <button class="button-tabela"  type="submit" name="excluir">Excluir</button>
+            <button class="button-tabela" type="submit" onclick="logout()">Logout</button>
         </form>
     </div>
 
     <script>
-        function mensagem() {
-            alert('Olá');
-        }
+    /*    function excluirUsuario() {
+            const ids = Array.from(document.querySelectorAll('input[name="excluir[]"]:checked')).map(input => input.value);
+
+            if (ids.length === 0) {
+                alert('Nenhum usuário selecionado para exclusão.');
+                return;
+            }
+            if (!confirm('Tem certeza que deseja excluir os usuários selecionados?')) {
+                return;
+            }
+        }*/
 
         function logout() {
             window.location.href = 'logout.php';
