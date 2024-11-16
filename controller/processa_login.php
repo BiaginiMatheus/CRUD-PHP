@@ -1,7 +1,15 @@
 <?php
+// Iniciar a sessão
+session_start();
 
 //Importe da conexão com o banco de dados
 require 'conexao_db.php';
+
+// Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: index.html');
+    exit;
+}
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

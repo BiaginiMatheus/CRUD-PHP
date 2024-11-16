@@ -40,7 +40,7 @@
             // Executa a inserção
             $stmt->execute(['nome' => $nome, 'email' => $email, 'senha' => $passwordHash]);
             // Mostra sucesso
-            echo "<script>alert('Registro realizado com sucesso!'); window.location.href = 'index.html';</script>";
+            echo "<script>alert('Registro realizado com sucesso!'); window.location.href = '../index.html';</script>";
         } catch (PDOException $e) {
             // Em caso de erro na inserção, mostra mensagem de erro
             echo "<script>alert('Erro ao efetuar o registro'); window.history.back();</script>";

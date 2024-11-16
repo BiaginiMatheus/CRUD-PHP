@@ -1,14 +1,32 @@
 <?php
+session_start();
+
 // Importe a conexão com o banco de dados usando PDO
 require 'conexao_db.php';
 
-// Iniciar a sessão
-session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-// Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.html');
-    exit;
+    $sql = "SELECT id, senha FROM Usuarios WHERE email = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $usuario['id'];
+            $_SESSION['email'] = $email;
+            header("Location: view/tabela.html");
+            exit;
+        } else {
+            echo "Senha incorreta.";
+        }
+    } else {
+        echo "Usuário não encontrado.";
+    }
 }
 
 // Atualizar dados do usuário se o formulário foi enviado
