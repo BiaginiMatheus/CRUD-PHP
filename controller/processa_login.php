@@ -6,8 +6,8 @@ session_start();
 require 'conexao_db.php';
 
 // Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.html');
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.html');
     exit;
 }
 

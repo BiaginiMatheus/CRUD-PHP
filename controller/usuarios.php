@@ -15,11 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->rowCount() > 0) {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Verifica a senha
         if (password_verify($senha, $usuario['senha'])) {
+            //Define as variáveis de sessão
             $_SESSION['loggedin'] = true;
             $_SESSION['user_id'] = $usuario['id'];
             $_SESSION['email'] = $email;
-            header("Location: view/tabela.html");
+            header("Location: ../view/tabela.html");
             exit;
         } else {
             echo "Senha incorreta.";
@@ -30,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-/*if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.html');
+/*if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.html');
     exit;
 }*/
 
