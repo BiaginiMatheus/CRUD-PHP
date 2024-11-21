@@ -29,23 +29,29 @@ include '../controller/usuarios.php';
                 </tbody>
             </table>
             <button class="button-tabela" type="submit" name="salvar">Salvar</button>
-            <button class="button-tabela"  type="submit" name="btnExcluir">Excluir</button>
+            <button class="button-tabela"  type="submit" name="btnExcluir"  onclick="return excluirUsuario()">Excluir</button>
             <button class="button-tabela" type="submit">Logout</button>
         </form>
     </div>
 
     <script>
-    /*    function excluirUsuario() {
+        function excluirUsuario() {
             const ids = Array.from(document.querySelectorAll('input[name="excluir[]"]:checked')).map(input => input.value);
 
+            // Verificar se algum usuário foi selecionado
             if (ids.length === 0) {
                 alert('Nenhum usuário selecionado para exclusão.');
-                return;
+                return false;  // Impede o envio do formulário
             }
+
+            // Exibir a caixa de confirmação
             if (!confirm('Tem certeza que deseja excluir os usuários selecionados?')) {
-                return;
+                return false;  // Impede o envio do formulário se o usuário cancelar
             }
-        }*/
+
+            // Se o usuário confirmar, o formulário será enviado
+            return true;
+        }
     </script>
 </body>
 </html>
