@@ -33,10 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-/*if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    //header('Location: ../index.html');
+    echo "<script>
+        alert('Você não está logado');
+    </script>";
+    
     header('Location: ../index.html');
     exit;
-}*/
+}
 
 // Atualizar dados do usuário se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
