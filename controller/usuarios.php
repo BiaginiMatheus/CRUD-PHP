@@ -22,6 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sqlDelete = "DELETE FROM Usuarios WHERE id = :id";
         $stmtDelete = $pdo->prepare($sqlDelete);
 
+        if (empty($_POST['excluir'])) {
+            // Caso nenhum checkbox esteja marcado
+            echo "<script>
+                    alert('Nenhum usuário foi selecionado para exclusão.');
+                    window.history.back();
+                </script>";
+            exit;
+        }
+
         //PEGAR SÓ O USUÁRIO SELECIONADO E NÃO TODOS    
        foreach ($_POST['excluir'] as $index => $id) {
             $stmtDelete->execute([':id' => $id]);
@@ -46,13 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':nome' => $nome,
                 ':email' => $email
             ]);
-
-            echo "<script>
+        }
+        echo "<script>
                 alert('Usuários atualizados com sucesso!');
                 window.history.back();
             </script>";
-            exit;
-        }
+        exit;
     }else{
         session_start();
         session_destroy();
