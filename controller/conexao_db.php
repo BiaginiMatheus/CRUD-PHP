@@ -3,7 +3,7 @@
     $port = '3306';
     $dbname = 'usuarios_db';
     $username = 'root';
-    $password = 'jenni12345678';
+    $password = 'SUA_SENHA';
 
     try {
         // DSN (Data Source Name) com informações do host, porta e nome do banco
