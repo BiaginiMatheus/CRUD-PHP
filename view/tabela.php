@@ -1,6 +1,5 @@
 <?php
 include '../controller/usuarios.php';
-include '../controller/logout.php';
 ?>
 
 
@@ -29,9 +28,9 @@ include '../controller/logout.php';
                     <?php exibirUsuarios($Usuarios); ?>
                 </tbody>
             </table>
-            <button class="button-tabela" type="submit">Salvar</button>
+            <button class="button-tabela" type="submit" name="salvar">Salvar</button>
             <button class="button-tabela"  type="submit" name="excluir">Excluir</button>
-            <button class="button-tabela" type="submit" onclick="logout()">Logout</button>
+            <button class="button-tabela" type="submit">Logout</button>
         </form>
     </div>
 
@@ -47,10 +46,6 @@ include '../controller/logout.php';
                 return;
             }
         }*/
-
-        function logout() {
-            window.location.href = 'logout.php';
-        }
     </script>
 </body>
 </html>

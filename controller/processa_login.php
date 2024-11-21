@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //Verifica se o hash da senha digitado, confere com o hash no BD
         if (password_verify($senha, $usuario['senha'])) { 
+            //Salva a sessão
             $_SESSION['loggedin'] = true;
 
             echo "<script> window.location.href = '../view/tabela.php'; </script>";

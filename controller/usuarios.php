@@ -9,9 +9,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     //header('Location: ../index.html');
     echo "<script>
         alert('Você não está logado');
+        window.location.href = '../index.html'
     </script>";
     
-    header('Location: ../index.html');
     exit;
 }
 
@@ -26,7 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        foreach ($_POST['id'] as $index => $id) {
             $stmtDelete->execute([':id' => $id]);
         }
-    }else{
+
+        echo "<script>
+                alert('Usuários excluido com sucesso!');
+                window.history.back();
+            </script>";
+        exit;
+    }else if (isset($_POST['salvar'])){
         // Atualizar os dados dos usuários
         $sqlUpdate = "UPDATE Usuarios SET nome = :nome, email = :email WHERE id = :id";
         $stmtUpdate = $pdo->prepare($sqlUpdate);
@@ -47,6 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </script>";
             exit;
         }
+    }else{
+        session_start();
+        session_destroy();
+        header('Location: ../index.html');
+        exit;
     }
 }
 
