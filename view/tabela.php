@@ -29,7 +29,7 @@ include '../controller/usuarios.php';
                 </tbody>
             </table>
             <button class="button-tabela" type="submit" name="salvar">Salvar</button>
-            <button class="button-tabela"  type="submit" name="excluir">Excluir</button>
+            <button class="button-tabela"  type="submit" name="btnExcluir">Excluir</button>
             <button class="button-tabela" type="submit">Logout</button>
         </form>
     </div>

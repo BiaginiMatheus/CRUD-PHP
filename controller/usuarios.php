@@ -17,13 +17,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 // Atualizar dados do usuário se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Deletar usuários selecionados
-    if (isset($_POST['excluir'])) {
+    // Deletar usuários selecionados quando botao deletar pressionado
+    if (isset($_POST['btnExcluir'])) {
         $sqlDelete = "DELETE FROM Usuarios WHERE id = :id";
         $stmtDelete = $pdo->prepare($sqlDelete);
 
         //PEGAR SÓ O USUÁRIO SELECIONADO E NÃO TODOS    
-       foreach ($_POST['id'] as $index => $id) {
+       foreach ($_POST['excluir'] as $index => $id) {
             $stmtDelete->execute([':id' => $id]);
         }
 
